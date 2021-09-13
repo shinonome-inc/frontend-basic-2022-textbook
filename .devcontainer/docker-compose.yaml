@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  workspace:
+    build: workspace
+    working_dir: "/src/"
+    command: >
+      bash -c "cd client &&
+      yarn install &&
+      sleep infinity"
+    volumes:
+      - ..\:/src/
