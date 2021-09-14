@@ -10,3 +10,6 @@ RUN apt-get update && \
 
 #gatsby-cli
 RUN npm install -g gatsby-cli
+
+#add ssh secret-key
+COPY .ssh/ /root/.ssh/
