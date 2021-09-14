@@ -5,8 +5,6 @@ services:
     build: workspace
     working_dir: "/src/"
     command: >
-      bash -c "cd client &&
-      yarn install &&
-      sleep infinity"
+      bash -c "sleep infinity"
     volumes:
       - ..\:/src/

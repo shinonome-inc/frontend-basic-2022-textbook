@@ -4,12 +4,9 @@ FROM node:14-buster-slim
 RUN apt-get update && \
   apt-get install -y --no-install-recommends \
   git \
-  curl \
   ca-certificates \
-  sudo \
-  openjdk-11-jre \
-  build-essential && \
+  && \
   apt-get -y clean
 
-#firebase
-RUN curl -sL firebase.tools | bash
+#gatsby-cli
+RUN npm install -g gatsby-cli
