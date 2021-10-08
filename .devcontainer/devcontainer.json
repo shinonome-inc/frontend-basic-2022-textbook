@@ -6,6 +6,7 @@
   "shutdownAction": "stopCompose",
   "extensions": [
     "eamodio.gitlens",
-    "esbenp.prettier-vscode"
+    "esbenp.prettier-vscode",
+    "silvenon.mdx"
   ]
 }
