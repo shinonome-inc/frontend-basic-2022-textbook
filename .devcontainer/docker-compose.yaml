@@ -3,8 +3,8 @@ version: "3"
 services:
   workspace:
     build: workspace
-    working_dir: "/fb-2022-textbook/"
+    working_dir: "/workspace/"
     command: >
       bash -c "sleep infinity"
     volumes:
-      - ../:/fb-2022-textbook/
+      - ../:/workspace/

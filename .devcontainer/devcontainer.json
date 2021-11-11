@@ -2,7 +2,7 @@
   "name": "frontend-basic-2022-textbook",
   "dockerComposeFile": "docker-compose.yaml",
   "service": "workspace",
-  "workspaceFolder": "/fb-2022-textbook",
+  "workspaceFolder": "/workspace/app/",
   "shutdownAction": "stopCompose",
   "extensions": [
     "eamodio.gitlens",
