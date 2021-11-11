@@ -2,6 +2,9 @@ module.exports = {
   siteMetadata: {
     siteUrl: "https://www.yourdomain.tld",
     title: "frontend-basic-2022-textbook",
+    exampleCommitHash: "cc79122",
+    exampleChromaticAppId: "611bf05d266fc6003c453c3a",
+    figmaIdAndFilename: "UXNBffUMdW2mO8wLctV3mJ/frontend_basic_2022_todo",
   },
   plugins: [
     "gatsby-plugin-typescript",

@@ -1,51 +1,15 @@
-import { graphql, Link, useStaticQuery } from "gatsby";
-import { MDXRenderer } from "gatsby-plugin-mdx";
 import React from "react";
+import tableOfContents from "../contexts/table-of-contents";
 import Header from "./header";
-
-export const query = graphql`
-  query Layout {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-    allFile {
-      nodes {
-        name
-      }
-    }
-    allMdx(sort: { fields: frontmatter___date, order: DESC }) {
-      nodes {
-        frontmatter {
-          date(formatString: "MMMM D, YYYY")
-          title
-        }
-        id
-        slug
-      }
-    }
-  }
-`;
+import TableOfContents from "./table-of-contents";
 
 const Layout: React.FC = ({ children }) => {
-  const data = useStaticQuery<GatsbyTypes.LayoutQuery>(query);
   return (
-    <>
+    <tableOfContents.TableOfContentsProvider>
       <Header />
-      {data.site?.siteMetadata?.title}
-      <ul>
-        {data.allMdx.nodes.map((node) => (
-          <li key={node.id}>
-            <Link to={`/${node.slug}`}>
-              <p>title: {node.frontmatter?.title}</p>
-              <p>created_at: {node.frontmatter?.date}</p>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <TableOfContents></TableOfContents>
       <main>{children}</main>
-    </>
+    </tableOfContents.TableOfContentsProvider>
   );
 };
 export default Layout;
