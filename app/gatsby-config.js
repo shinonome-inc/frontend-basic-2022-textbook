@@ -1,6 +1,7 @@
 module.exports = {
+  pathPrefix: `/frontend-basic-2022-textbook`,
   siteMetadata: {
-    siteUrl: "https://www.yourdomain.tld",
+    siteUrl: "http://shinonome.io/frontend-basic-2022-textbook/",
     title: "frontend-basic-2022-textbook",
     exampleCommitHash: "cc79122",
     exampleChromaticAppId: "611bf05d266fc6003c453c3a",
