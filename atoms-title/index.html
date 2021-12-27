@@ -1,0 +1,104 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 3.14.0"/><style data-styled="" data-styled-version="5.3.1">.insMYM{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}/*!sc*/
+data-styled.g1[id="header__StyledWrapper-sc-1rxdrcl-0"]{content:"insMYM,"}/*!sc*/
+</style><link as="script" rel="preload" href="/webpack-runtime-f987be90d5c4ca327461.js"/><link as="script" rel="preload" href="/framework-64fa7b46955ed3949446.js"/><link as="script" rel="preload" href="/app-ec2b2bf9e3ea19dfac4b.js"/><link as="script" rel="preload" href="/component---src-pages-mdx-slug-tsx-d238951b7081dcfbc14b.js"/><link as="fetch" rel="preload" href="/page-data/atoms-title/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/1844045602.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><header><div class="header__StyledWrapper-sc-1rxdrcl-0 insMYM"><div class="header__StyledText-sc-1rxdrcl-1 kFgiiT">header</div></div></header><ul><li><a href="/style-sample"><p>title: <!-- -->Style Sample</p><p>created_at: <!-- -->Tue Dec 27 2022 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/introduction"><p>title: <!-- -->イントロダクション - 完成像の把握</p><p>created_at: <!-- -->Tue Sep 21 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/environment"><p>title: <!-- -->環境構築</p><p>created_at: <!-- -->Mon Sep 20 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/atoms-title"><p>title: <!-- -->Atoms/Title</p><p>created_at: <!-- -->Thu Nov 11 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/atoms-editbutton"><p>title: <!-- -->Atoms/EditButton</p><p>created_at: <!-- -->Sun Dec 26 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/atoms-addtaskbutton"><p>title: <!-- -->Atoms/AddTaskButton</p><p>created_at: <!-- -->Sun Dec 26 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/atoms-checkbox"><p>title: <!-- -->Atoms/Checkbox</p><p>created_at: <!-- -->Sun Dec 26 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/atoms-input"><p>title: <!-- -->Atoms/Input</p><p>created_at: <!-- -->Sun Dec 26 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/molecules-task"><p>title: <!-- -->Molecules/Task</p><p>created_at: <!-- -->Sun Dec 26 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/organisms-todocard"><p>title: <!-- -->Organisms/TodoCard</p><p>created_at: <!-- -->Sun Dec 26 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/pages-mainpage"><p>title: <!-- -->Pages/MainPage</p><p>created_at: <!-- -->Sun Dec 26 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/integrate"><p>title: <!-- -->ひとまず完成</p><p>created_at: <!-- -->Sun Dec 26 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/localstorage"><p>title: <!-- -->Local Storageの使用</p><p>created_at: <!-- -->Sun Dec 26 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/alert"><p>title: <!-- -->アラートの実装</p><p>created_at: <!-- -->Sun Dec 26 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/the-end"><p>title: <!-- -->最終課題終了</p><p>created_at: <!-- -->Sun Dec 26 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li></ul><main><p>title: <!-- -->Atoms/Title</p><p>date: <!-- -->November 11, 2021</p><iframe src="https://cc79122--611bf05d266fc6003c453c3a.chromatic.com/?path=/story/atoms-title--default&amp;viewMode=story&amp;shortcuts=false&amp;singleStory=true" width="800" height="400"></iframe><iframe height="450" width="800" src="https://www.figma.com/embed?embed_host=share&amp;url=https://www.figma.com/file/UXNBffUMdW2mO8wLctV3mJ/frontend_basic_2022_todo?node-id=5%3A189"></iframe><p>まず、今回の課題の中で最も初歩的なコンポーネントである Atoms/Title を作成していきましょう。</p><p>以下のディレクトリ構造を参考に二つのファイル<code>index.jsx</code>と<code>story.jsx</code>を作成してください。</p><h2>ディレクトリ構造</h2><pre><code>src
+  └ components
+    └ Atoms
+      └ Title
+        ├ index.jsx
+        └ story.jsx
+</code></pre><h2>index.jsx の記述</h2><p><code>index.jsx</code>を開いて編集していきます。</p><p>最初に、コンポーネントのひな形となる以下のコードを記入しましょう。
+コピペでも構いませんが、意味を理解してから次へ進むようにしてください。</p><pre><code>import React from &quot;react&quot;;
+
+const Title = () =&gt; {
+  return null;
+}
+export default Title;
+</code></pre><p>コードの説明をします。</p><p>まず、一行目では react パッケージを React という名前でインポートしています。
+この行は今回使う React 等のバージョンでは必須の記述なので忘れず記入してください。
+コードの中で React を直接使用していなくても書いてないとエラーが発生することがあります。</p><p>次に 3 行目~5 行目の記述で、Title コンポーネントを定義しています。
+React のコンポーネントはこのように関数の形で表されます。（今回はアロー関数の形で書いています）
+また、古いコードだと class として定義しているものもあり、どちらでも動作します。
+ですが、class の方は記述量が増え煩雑になるため、特段の理由が無ければ関数として定義することをおすすめします。
+関数は返り値として、コンポーネントの中身を表す、JSX 形式で記述された DOM 要素を返します。
+これは、この後で記述するので一旦 null としています。</p><p>最後に、6 行目で Title コンポーネントをこのファイルのデフォルトエクスポートとして設定しています。
+これによって、外部ファイルから、<code>import (自由な名前 Titleとすると分かりやすい) from &quot;(Atoms/Titleへのパス)&quot;;</code>と記述することで
+この Title コンポーネントを呼び出して使えるようになります。</p><p>続いて、コンポーネントの中身を記述していきましょう。
+先ほど述べた通り、コンポーネント内の要素は JSX という形式で記述します。
+これは細かい違いは多々あるものの、基本的には HTML と同じ記法で書くことができます。
+js ファイルの中に HTML を書くのは気持ちが悪いかもしれませんが、慣れて行きましょう。
+実際に<code>SIMPLE TODO APP</code>のテキストを表示する JSX を先ほどの return の中に書いていきます。</p><pre><code>const Title = () =&gt; {
+  return &lt;div&gt;SIMPLE TODO APP&lt;/div&gt;;
+}
+</code></pre><p>このようになります。今回は便宜上 div 要素を用いています。</p><h2>story.jsx の記述</h2><p>ここで、index.jsx の内容がどのように描画されるか確認していきましょう。
+先ほど作成した<code>story.jsx</code>を開いて編集していきます。</p><p>次のコードを記入しましょう。</p><pre><code>import React from &quot;react&quot;;
+import Component from &quot;./index&quot;;
+
+export default {
+  component: Component,
+  title: &quot;Atoms/Title&quot;,
+  parameters: {
+    backgrounds: {
+      default: &quot;dark&quot;,
+    },
+  },
+};
+
+const Template = (args) =&gt; &lt;Component {...args} /&gt;;
+
+export const Default = Template.bind({});
+</code></pre><p>このファイルは先ほど作成したコンポーネントを storybook に登録するためのものです。
+これに関しては完全な理解は難しいので詳しい解説は行いません。
+コンポーネントを作成する際は毎回これをコピペしていただいて構いません。
+ただし、6 行目の title の中身はそのコンポーネントのカテゴリと名前を表すので、ファイルごとに変更するようにしましょう。
+例えば今回は Atoms カテゴリの Title コンポーネントなので、<code>Atoms/Title</code>としています。</p><h2>storybook の起動</h2><p>作成できたら storybook を起動して作成した Title コンポーネントをプレビューしましょう。
+Terminal を開き、package.json の存在するディレクトリ（リポジトリの一番上のディレクトリ）にいることを確認して、
+<code>yarn sb</code>を実行しましょう。
+しばらく処理が走ったあと、エラーが無ければ http://localhost:6006 から storybook のページが閲覧できるようになります。
+エラーが出た場合はできる限りエラーの内容を読み、今までの手順を間違えていないか確認しましょう。
+解決が難しいと判断したら気軽に PGrit 等で講師に質問してください。</p><p>さて、storybook のページを開けたら、画面左のサイドバーから Atoms フォルダ内の Title コンポーネントを選択しましょう。（先ほど story.jsx の title に記述した内容に対応しています）
+すると、画面中央部に SIMPLE TODO APP と表示されると思います。（黒地に黒い文字なので見づらいですが）
+これが先ほど作成した Title.jsx コンポーネントとなります。</p><p>ここでする必要はありませんが、storybook を停止したい場合は実行中のターミナルで<code>Command(WindowsならCtrl)+C</code>を入力してください。</p><h2>スタイルの適用</h2><p>このままでは見た目が貧相なので、テキストに対しスタイルを指定しましょう。
+ただし、今回は css ファイルを作成せず、React のプラグインである styled-components を利用します。
+これは一言で表すと、スタイル付きの React コンポーネントを生成するツール群になります。
+使ってみた方が理解は進むと思うので、早速書いて行きましょう。
+<code>index.tsx</code>ファイルの先頭に以下の import 文を追加してください。</p><pre><code>import styled from &quot;styled-components&quot;;
+</code></pre><p>これで styled というエイリアスを用いて styled-components の機能を呼び出せるようになりました。
+次に、これを使ってタイトルのテキストを表す StyledText コンポーネントを作成しましょう。
+ファイルの一番下に以下の記述を追加してください。</p><pre><code>const StyledText = styled.div`
+  color: white;
+`;
+</code></pre><p>見慣れない記述ですが一旦解説は後回しにします。
+次に、先ほど作った Title コンポーネントの return の中身を次のように書き換えてください。</p><pre><code>return &lt;StyledText&gt;SIMPLE TODO APP&lt;/StyledText&gt;;
+</code></pre><p>先ほど div 要素だったものを作成した StyledText に置き換えました。
+JSX の記述においてはこのように React コンポーネントと HTML 要素は同列に扱うことができます。
+（HTML 要素と同じ名前の React コンポーネントが最初から定義されていると考えてもいい）</p><p>この状態で storybook のページを見てみましょう。先ほど停止してしまった場合は再び<code>yarn sb</code>で起動し、localhost:6006 を開いてください。</p><p>Atoms/Title コンポーネントの<code>SIMPLE TODO APP</code>の文字が白くなっているのが確認できると思います。</p><p>ここで、先ほど定義した StyledText コンポーネントを見てみましょう。</p><pre><code>const StyledText = styled.div`
+  color: white;
+`;
+</code></pre><p>styled.div に続いて、&quot;<!-- -->`<!-- -->&quot;と&quot;<!-- -->`<!-- -->&quot;の中に<code>color:white;</code>の記述があります。
+ここまで来た皆さんならすぐ分かると思いますが、これは css で文字色を白にする記述となります。
+すなわち、この&quot;<!-- -->`<!-- -->&quot;と&quot;<!-- -->`<!-- -->&quot;で囲われている部分に記されたスタイルが SIMPLE TODO APP に適用されているわけです。
+試しに<code>font-size: 50px;</code>を追加してみると、文字が大きくなります。</p><p>また、styled.&quot;div&quot;と書かれているところを styled.&quot;a&quot;に変更して、storybook のページに表示されている SIMPLE TODO APP の要素を検証ツールで
+調べてみましょう。すると、a 要素になっていることが分かると思います。
+すなわち、styled.の後ろに続く関数名によって、生成する DOM 要素を変更することもできます。（定義されているものに限る）
+今回は div でいいので戻しておきましょう。</p><p>これが、styled-components によるスタイルの記述方法となります。
+手順をまとめると、</p><ol><li><code>const 要素名 = styled.(最終的なDOM要素名)</code>`<code>(スタイル)</code>`<code>;</code>でコンポーネントを定義。</li><li>メインのコンポーネントの return 内で<code>&lt;要素名&gt;(中身)&lt;/要素&gt;</code>として使用。</li></ol><p>となります。</p><h3>定数の使用</h3><p>今回の課題では、テンプレートリポジトリの中にスタイルで使用する色等の値を定数として既に定義してあります。</p><p><code>src/variables/</code>ディレクトリの中に入っている js ファイルを開いて見ましょう。例えば<code>color.js</code>の中では、
+COLOR というオブジェクトを定義し、その中で BLACK、RED 等の色の名前をキーとして、<code>&quot;#232324&quot;</code>等のカラーコードが格納されています。
+そして、外部から参照できるように COLOR オブジェクトをインポートしています。
+使いまわす値はこのようになるべく一つのファイルで管理した方が後で変更が楽です。</p><p>これと同様に、<code>breakpoint.js</code>、<code>font_family.js</code>、<code>texts.js</code>も定義されています。
+課題の中でスタイルを記述する際に、<strong>色、フォントの種類、テキストサイズ、ブレークポイント</strong>には<strong>必ず</strong>これらで定義された
+変数を使うようにしてください。</p><p>以下に色とテキストの定数をスタイルの中で使用する例を示します。</p><pre><code>import COLOR from &quot;../../../variables/color&quot;; // color.jsのCOLOR定数をインポート fromの中身はvariables/color.jsへの相対パス
+import TEXT from &quot;../../../variables/text&quot;; // text.jsのTEXT定数をインポート
+
+...
+
+/* styled-componentの定義 文字色にGREEN、背景色にLIGHT_BLACK、テキストのサイズはMを指定 */
+const StyledExample = styled.div`
+  color: ${COLOR.GREEN};
+  background: ${COLOR.LIGHT_BLACK};
+  ${TEXT.M}
+`;
+</code></pre><p>COLOR、FONTFAMILY、BREAKPOINT は全て同じように<code>cssプロパティ: ${定数.キー};</code>の形で使えますが、
+TEXT は css プロパティの指定まで含んでいるため、いきなり<code>${TEXT.サイズ}</code>の形で書くことに注意してください。</p><h3>Atoms/Title を完成させる</h3><p>先ほど作成した<code>src/components/Atoms/Title/index.jsx</code>の中に定義した StyledText の文字色を、定数の COLOR.WHITE にしましょう。
+加えて、figma の指定をよく見ながら、</p><ul><li>テキストのサイズ</li><li>フォントの種類</li><li>画面幅がタブレットサイズ以上のときのテキストのサイズ
+を同様に定数を用いて記述しましょう。</li></ul><p>storybook 上で figma のお手本と同じ見た目になったことを確認したら、
+プルリクエストを出し、レビューを受けてください。</p></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/atoms-title/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-4387fe946caa62a6ad17.js"],"app":["/app-ec2b2bf9e3ea19dfac4b.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-73d7bf4dde124e6e1767.js"],"component---src-pages-mdx-slug-tsx":["/component---src-pages-mdx-slug-tsx-d238951b7081dcfbc14b.js"]};/*]]>*/</script><script src="/polyfill-4387fe946caa62a6ad17.js" nomodule=""></script><script src="/component---src-pages-mdx-slug-tsx-d238951b7081dcfbc14b.js" async=""></script><script src="/app-ec2b2bf9e3ea19dfac4b.js" async=""></script><script src="/framework-64fa7b46955ed3949446.js" async=""></script><script src="/webpack-runtime-f987be90d5c4ca327461.js" async=""></script></body></html>

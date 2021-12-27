@@ -1,0 +1,43 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 3.14.0"/><style data-styled="" data-styled-version="5.3.1">.insMYM{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}/*!sc*/
+data-styled.g1[id="header__StyledWrapper-sc-1rxdrcl-0"]{content:"insMYM,"}/*!sc*/
+</style><link as="script" rel="preload" href="/webpack-runtime-f987be90d5c4ca327461.js"/><link as="script" rel="preload" href="/framework-64fa7b46955ed3949446.js"/><link as="script" rel="preload" href="/app-ec2b2bf9e3ea19dfac4b.js"/><link as="script" rel="preload" href="/component---src-pages-mdx-slug-tsx-d238951b7081dcfbc14b.js"/><link as="fetch" rel="preload" href="/page-data/molecules-task/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/1844045602.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><header><div class="header__StyledWrapper-sc-1rxdrcl-0 insMYM"><div class="header__StyledText-sc-1rxdrcl-1 kFgiiT">header</div></div></header><ul><li><a href="/style-sample"><p>title: <!-- -->Style Sample</p><p>created_at: <!-- -->Tue Dec 27 2022 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/introduction"><p>title: <!-- -->イントロダクション - 完成像の把握</p><p>created_at: <!-- -->Tue Sep 21 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/environment"><p>title: <!-- -->環境構築</p><p>created_at: <!-- -->Mon Sep 20 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/atoms-title"><p>title: <!-- -->Atoms/Title</p><p>created_at: <!-- -->Thu Nov 11 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/atoms-editbutton"><p>title: <!-- -->Atoms/EditButton</p><p>created_at: <!-- -->Sun Dec 26 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/atoms-addtaskbutton"><p>title: <!-- -->Atoms/AddTaskButton</p><p>created_at: <!-- -->Sun Dec 26 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/atoms-checkbox"><p>title: <!-- -->Atoms/Checkbox</p><p>created_at: <!-- -->Sun Dec 26 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/atoms-input"><p>title: <!-- -->Atoms/Input</p><p>created_at: <!-- -->Sun Dec 26 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/molecules-task"><p>title: <!-- -->Molecules/Task</p><p>created_at: <!-- -->Sun Dec 26 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/organisms-todocard"><p>title: <!-- -->Organisms/TodoCard</p><p>created_at: <!-- -->Sun Dec 26 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/pages-mainpage"><p>title: <!-- -->Pages/MainPage</p><p>created_at: <!-- -->Sun Dec 26 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/integrate"><p>title: <!-- -->ひとまず完成</p><p>created_at: <!-- -->Sun Dec 26 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/localstorage"><p>title: <!-- -->Local Storageの使用</p><p>created_at: <!-- -->Sun Dec 26 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/alert"><p>title: <!-- -->アラートの実装</p><p>created_at: <!-- -->Sun Dec 26 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/the-end"><p>title: <!-- -->最終課題終了</p><p>created_at: <!-- -->Sun Dec 26 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li></ul><main><p>title: <!-- -->Molecules/Task</p><p>date: <!-- -->December 26, 2021</p><iframe src="https://cc79122--611bf05d266fc6003c453c3a.chromatic.com/?path=/story/molecules-task--default&amp;viewMode=story&amp;shortcuts=false&amp;singleStory=true" width="800" height="400"></iframe><iframe height="450" width="800" src="https://www.figma.com/embed?embed_host=share&amp;url=https://www.figma.com/file/UXNBffUMdW2mO8wLctV3mJ/frontend_basic_2022_todo?node-id=5%3A189"></iframe><p>Moleculesに入りましたね。
+ここからは今までAtoms等下の階層で作った小さなパーツを組み上げながら、その具体的な機能を与えて、
+大きなパーツを作っていく工程になります。</p><p>Atoms/Checkbox、Atoms/EditButton、Atoms/Inputを組み合わせて、まずは見た目を作りましょう。
+もちろん、配置の調整や非編集時にタスク名を表示する部分は新たにスタイルを書く必要があります。</p><h2>ディレクトリ構造</h2><pre><code>src
+  └ components
+    └ Molecules
+      └ Task
+        ├ index.jsx
+        └ story.jsx
+</code></pre><h2>状態の管理</h2><p>このパーツには、編集中とそうでない時の二つの状態があります。</p><p>そのため、編集中かどうかを表す変数を作り、</p><ul><li>変数の値がtrueならばAtoms/Inputを表示し、falseならばただの文字列としてタスク名を表示する。</li><li>Atoms/EditButtonが押されたら変数にtrueを代入する。</li><li>Atoms/InputのonEditCompleteが呼ばれたら変数にfalseを代入する。
+というアルゴリズムで状態の切り替えを実現することを考えます。</li></ul><p>しかし、これはそのままでは不可能です。
+なぜなら、コンポーネントは再描画される度に処理が最初から実行され、前回定義した変数の値を記録できないからです。
+加えて、そもそもその場で定義した変数の値を変更しても、再描画は実行されません。</p><p>そのため、変更されたら再描画が実行され、かつ再描画前の情報を保持するものが必要となります。
+それがReactのStateになります。</p><p>使い方を見てみましょう。以下は一秒ごとにカウントアップしていく表示を作る例です。</p><pre><code>import React, {useState, useEffect} from &quot;react&quot;;
+
+const Sample = () =&gt; {
+  const [count, setCount] = useState(0);
+
+  useEffect(() =&gt; {
+    setTimeout(() =&gt; setCount(count + 1), 1000);
+  },[count]);
+
+  return &lt;div&gt;{count}&lt;/div&gt;;
+}
+export default Sample;
+</code></pre><p>4行目でuseState関数を呼び出すことでStateの定義を行っています。
+useStateの引数はStateの初期値です。
+useStateの返り値は、現在のStateの値、Stateを更新するための関数が入った配列の形で返されるので、
+それぞれcount、setCountに分割代入しています。</p><p>useEffectで第二引数にcountを指定することで、countの値が更新される度に処理を実行しています。
+処理の中身は一秒後にsetCountを呼び出して、countの値を1増やすものです。
+これによって一秒ごとに再描画 -&gt; カウントアップが行われることとなります。</p><p>注意するべきは、countに直接値を代入しても何も起こらないということです。
+Stateの値を更新する際はかならずuseStateの返り値で貰える更新用の関数、今回でいうsetCountを介して行いましょう。
+すると再描画が行われます。</p><p>これを利用して、編集中かどうかを表すStateを定義し、先ほどのアルゴリズムを実装してみましょう。</p><h2>親要素との関係</h2><p>このコンポーネントはタスク名を表示しますが、タスクは複数あるため、その状態の管理はこの大本で一括して行った方がいいでしょう。
+そのため、タスク名はpropsで指定できるようにします。</p><p>また、タスク名が編集されたとき、タスクが完了したとき（チェックボックスが押されたとき）は、
+親要素で管理しているタスク情報を変更しなければならないため、
+その処理もそれぞれpropsで指定できるようにしましょう。
+特に、タスク名が編集されたときの関数は、その引数として変更後のタスク名をとることで情報の受け渡しが可能になります。</p><p>加えて、タスク追加ボタンを押されたとき、タスクは編集中の状態で追加されます。
+しかし、画面をリロードしたときはタスクは編集中ではありません。
+どちらもMolecules/Taskを生成しているので、この違いはpropsを介して指定できるようにしなくてはなりません。
+すなわち、生成されたときに編集中か否かを表すpropsを追加する必要があります。</p><p>propsの定義とその組み込みができたら、その機能が上手く動いているか（特に関数がちゃんと呼び出されているか）、
+story.jsxでpropsの値をいじって確認しましょう。</p><p>レビューの際は、storybook上で次を満たす状態で提出してください。</p><ul><li>タスク名にstory.jsx上で指定した値が入っている。</li><li>チェックボックスをクリックすると、Consoleに&quot;task completed&quot;と表示される。</li><li>タスク名の編集が完了すると、Consoleに&quot;taskname changed: &lt;変更後のタスク名&gt;&quot;と表示される。</li><li>(タスク名を編集してもタスク名が変更されないのは問題ない。)</li></ul></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/molecules-task/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-4387fe946caa62a6ad17.js"],"app":["/app-ec2b2bf9e3ea19dfac4b.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-73d7bf4dde124e6e1767.js"],"component---src-pages-mdx-slug-tsx":["/component---src-pages-mdx-slug-tsx-d238951b7081dcfbc14b.js"]};/*]]>*/</script><script src="/polyfill-4387fe946caa62a6ad17.js" nomodule=""></script><script src="/component---src-pages-mdx-slug-tsx-d238951b7081dcfbc14b.js" async=""></script><script src="/app-ec2b2bf9e3ea19dfac4b.js" async=""></script><script src="/framework-64fa7b46955ed3949446.js" async=""></script><script src="/webpack-runtime-f987be90d5c4ca327461.js" async=""></script></body></html>

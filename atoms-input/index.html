@@ -1,0 +1,52 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 3.14.0"/><style data-styled="" data-styled-version="5.3.1">.insMYM{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}/*!sc*/
+data-styled.g1[id="header__StyledWrapper-sc-1rxdrcl-0"]{content:"insMYM,"}/*!sc*/
+</style><link as="script" rel="preload" href="/webpack-runtime-f987be90d5c4ca327461.js"/><link as="script" rel="preload" href="/framework-64fa7b46955ed3949446.js"/><link as="script" rel="preload" href="/app-ec2b2bf9e3ea19dfac4b.js"/><link as="script" rel="preload" href="/component---src-pages-mdx-slug-tsx-d238951b7081dcfbc14b.js"/><link as="fetch" rel="preload" href="/page-data/atoms-input/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/1844045602.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><header><div class="header__StyledWrapper-sc-1rxdrcl-0 insMYM"><div class="header__StyledText-sc-1rxdrcl-1 kFgiiT">header</div></div></header><ul><li><a href="/style-sample"><p>title: <!-- -->Style Sample</p><p>created_at: <!-- -->Tue Dec 27 2022 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/introduction"><p>title: <!-- -->イントロダクション - 完成像の把握</p><p>created_at: <!-- -->Tue Sep 21 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/environment"><p>title: <!-- -->環境構築</p><p>created_at: <!-- -->Mon Sep 20 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/atoms-title"><p>title: <!-- -->Atoms/Title</p><p>created_at: <!-- -->Thu Nov 11 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/atoms-editbutton"><p>title: <!-- -->Atoms/EditButton</p><p>created_at: <!-- -->Sun Dec 26 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/atoms-addtaskbutton"><p>title: <!-- -->Atoms/AddTaskButton</p><p>created_at: <!-- -->Sun Dec 26 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/atoms-checkbox"><p>title: <!-- -->Atoms/Checkbox</p><p>created_at: <!-- -->Sun Dec 26 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/atoms-input"><p>title: <!-- -->Atoms/Input</p><p>created_at: <!-- -->Sun Dec 26 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/molecules-task"><p>title: <!-- -->Molecules/Task</p><p>created_at: <!-- -->Sun Dec 26 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/organisms-todocard"><p>title: <!-- -->Organisms/TodoCard</p><p>created_at: <!-- -->Sun Dec 26 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/pages-mainpage"><p>title: <!-- -->Pages/MainPage</p><p>created_at: <!-- -->Sun Dec 26 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/integrate"><p>title: <!-- -->ひとまず完成</p><p>created_at: <!-- -->Sun Dec 26 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/localstorage"><p>title: <!-- -->Local Storageの使用</p><p>created_at: <!-- -->Sun Dec 26 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/alert"><p>title: <!-- -->アラートの実装</p><p>created_at: <!-- -->Sun Dec 26 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li><li><a href="/the-end"><p>title: <!-- -->最終課題終了</p><p>created_at: <!-- -->Sun Dec 26 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</p></a></li></ul><main><p>title: <!-- -->Atoms/Input</p><p>date: <!-- -->December 26, 2021</p><iframe src="https://cc79122--611bf05d266fc6003c453c3a.chromatic.com/?path=/story/atoms-input--default&amp;viewMode=story&amp;shortcuts=false&amp;singleStory=true" width="800" height="400"></iframe><iframe height="450" width="800" src="https://www.figma.com/embed?embed_host=share&amp;url=https://www.figma.com/file/UXNBffUMdW2mO8wLctV3mJ/frontend_basic_2022_todo?node-id=5%3A189"></iframe><p>ここに来ていよいよ難関です。
+Reactの新要素が2つも飛び出します。</p><p>まずは見た目を作っていきましょう。一つのinput要素に対してスタイルをあてていく感じになります。
+index.jsxとstory.jsxを作成してください。</p><h2>ディレクトリ構造</h2><pre><code>src
+  └ components
+    └ Atoms
+      └ Input
+        ├ index.jsx
+        └ story.jsx
+</code></pre><h2>コンポーネントの初期化処理</h2><p>コンポーネントそのものはただの関数であるため、return文の前に様々な処理を実行することができる。
+しかし、それらはコンポーネントが再描画される度に毎回実行されてしまう。</p><p>再描画は、propsが更新されたとき、別のページで紹介するコンポーネントの&quot;状態&quot;が更新された時、
+そしてコンポーネントを呼び出している親要素が更新されたときに発生する。
+そのため、コンポーネントを作成したときに最初に一度だけ行いたいような処理も、
+普通に書いただけでは親要素が更新されることでもう一度実行されてしまう。</p><p>そこで使用するのがuseEffectという関数である。
+これは、コンポーネント内の&quot;何が&quot;更新されたときに&quot;何をするか&quot;を指定する関数である。
+すなわち、指定したもの以外が変更されていなければ処理を実行しない。</p><p>加えて、コンポーネントが作成されたときに一度実行される。
+これを利用して初期化処理を記述する。
+使い方は次のようになる。</p><pre><code>import React, {useEffect} from &quot;react&quot;;
+
+const Sample = () =&gt; {
+  useEffect(() =&gt; {
+    console.log(&quot;initialized&quot;);
+  }, [])
+
+  return null;
+}
+</code></pre><p>useEffectの第一引数は実行する関数、第二引数は変更を監視する値の配列となる。
+この第二引数に空の配列を指定することで、「初期化時に実行して、
+それ以降は何の値の変更にも反応しない」という処理を記述することができる。
+実際このコンポーネントを設置すると、生成された際に一度だけConsoleに&quot;initialized&quot;を出力する。</p><h2>処理の流れを考える</h2><p>もう一度完成品をさわりながら、どういった処理が必要かを考えましょう。</p><p>このコンポーネントは、タスクの追加及び編集ボタンを押した後に出現します。</p><p>編集の場合は、現在のそのタスクのタイトルが入力された状態で出てきます。</p><p>また、出現すると同時にinput要素へフォーカスが当てられ、すぐに入力が可能となります。</p><p>そして、文字を入力してEnterキーを押す、またはこのコンポーネント以外の場所をクリックする=フォーカスが外れると、
+入力した内容でタスクが書き換えられ、このコンポーネントは消えます。</p><p>これらの処理のうち、このコンポーネント内でできないものは、</p><ul><li>入力完了時に入力された内容でタスクを書き換える &lt;- 元のタスクの情報をこのコンポーネントは管理していない</li><li>自分を消す
+です。そのため、これらの処理は今までのonClickのように、設置する際に親要素から指定できるようにします。
+この関数をonEditCompleteとします。</li></ul><p>また、編集のときにタスクのタイトルを入力しておくために、デフォルトの入力内容も親要素から指定できるようにしましょう。
+これが指定されない場合は空文字列を入れておくことで、新規作成の際も対応できます。
+この文字列をdefaultValueとします。</p><p>処理をまとめると次のようになります。</p><ul><li>defaultValueがinput要素に入力された状態にする</li><li>input要素にフォーカスを当てる</li><li>input要素からフォーカスが外れたイベントがあった際に、onEditCompleteを実行する。</li><li>input要素の入力中にEnterキーが押されたらonEditCompleteを実行する。</li></ul><p>これらの処理は一度だけ行えばよいので、先ほど説明したようにuseEffectを用いて初期化処理として記述します。</p><h2>input要素の操作</h2><p>input要素に対する操作をするためには、普通にJavaScriptを書くならば、
+要素にidを指定してdocument.getElementByIdを使って…という方法をになりますが、Reactではそれは推奨されません。
+代わりにRefというものを介してDOMの操作を行います。</p><p>例えばdiv要素のRefを取得して直接スタイルを書き換えるには以下のようにします。</p><pre><code>import React, {useRef, useEffect} from &quot;react&quot;;
+
+const Sample = () =&gt; {
+  const ref = useRef(null);
+  
+  useEffect(() =&gt; {
+    ref.current.style.width = &quot;1000px&quot;;
+  }, []);
+
+  return &lt;div ref={ref}&gt;extended&lt;/div&gt;
+}
+export default Sample;
+</code></pre><p>4行目でrefを定義し、それをreturn内のdivと紐づけることで、<strong>基本的にuseEffect内で</strong>、
+ref.currentを介してDOMの操作が可能となります。</p><p>これを利用して、input要素へのデフォルト入力値の設定、フォーカスを当てる、イベント処理の登録を行ってみましょう。
+input要素のJavaScriptからの制御方法を調べながらやってみてください。</p></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/atoms-input/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-4387fe946caa62a6ad17.js"],"app":["/app-ec2b2bf9e3ea19dfac4b.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-73d7bf4dde124e6e1767.js"],"component---src-pages-mdx-slug-tsx":["/component---src-pages-mdx-slug-tsx-d238951b7081dcfbc14b.js"]};/*]]>*/</script><script src="/polyfill-4387fe946caa62a6ad17.js" nomodule=""></script><script src="/component---src-pages-mdx-slug-tsx-d238951b7081dcfbc14b.js" async=""></script><script src="/app-ec2b2bf9e3ea19dfac4b.js" async=""></script><script src="/framework-64fa7b46955ed3949446.js" async=""></script><script src="/webpack-runtime-f987be90d5c4ca327461.js" async=""></script></body></html>
