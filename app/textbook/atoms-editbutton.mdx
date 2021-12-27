@@ -1,0 +1,147 @@
+---
+title: "Atoms/EditButton"
+date: "2021-12-26"
+index: 50
+pathToStory: /story/atoms-editbutton--default
+figmaNodeId: 5%3A189
+---
+
+Atoms/Title の頁で基本的な React コンポーネントの作成の流れをお伝えしました。
+これ以降も同じ流れで作成していきましょう。
+課題ページでは、各コンポーネントの作成におけるポイントを解説していきます。
+
+まずは`index.jsx`と`story.jsx`を作成しましょう。
+
+## ディレクトリ構造
+
+```
+src
+  └ components
+    └ Atoms
+      └ EditButton
+        ├ index.jsx
+        └ story.jsx
+```
+
+## コンポーネントの構造の分析
+
+Atoms/Title はただテキストが一つ入るだけのコンポーネントでしたが、Atoms/EditButton は鉛筆アイコンと、
+その上にマウスを当てたときに出る円の二つを含みます。
+
+React コンポーネントの return の中身は一つの要素の中にまとまっている必要があるので、
+このコンポーネントでは以下のようになるでしょう。
+
+```
+return <ボタン全体>
+    <ホバー時の円/>
+    <鉛筆アイコン/>
+  </ボタン全体>
+```
+
+入れ物とホバー時の円は styled-components で、鉛筆アイコンは後述する方法で作成しましょう。
+また、ボタン全体は要素の意味を表すためにbuttonタグを元に作るのがよいでしょう。（styled.button）
+
+## アイコン画像の表示
+
+アイコン画像といえどただの画像です。HTML で普通に画像を表示するのと同じ要領で表示することができます。
+
+ただし、今回のように webpack を使って最終的に一つの js ファイルにコードをまとめる場合は、
+画像ファイルの扱い方は次の二通りとなります。
+
+- index.html からの相対パスや絶対パスで画像を参照する（js ファイルと画像は別のファイルとして存在）
+- import 文を使って画像を参照する (js ファイルの中に画像データも書き込まれる)
+
+`import`文を使うと画像ファイルのサイズ分（厳密に言うとその 1.6 倍くらい）js ファイルのサイズが巨大化してしまいますが、
+web サイト設置後にパスが切れたりする心配がないのでなにかと楽です。
+
+今回使う画像ファイルは svg という、あまりファイルサイズの大きくならない形式なので、import 文を使ったやり方で実装しましょう。
+
+本課題で必要なアイコン画像は全て`src/assets/svg/`の中に入っているので、見た目を確認しながら適切なものを選んで使いましょう。
+Atoms/EditButton で使うのは pencil.svg ですね。
+
+index.jsx に次を追加してください。
+
+```
+import pencil from "../../../assets/svg/pencil.svg";
+```
+
+これによって画像ファイルそのものを pencil というエイリアスを介して参照できるようになりました。
+実際に画像を表示させるときは img タグ内の src にこの pencli を渡せばよいです。
+
+```
+return <img src={pencli}/>
+```
+
+## ボタンとしての機能
+
+ボタンの機能として重要なのは、押したときに何か変化が起こるということです。
+しかし、ボタンそのものに押したときの処理を書き込んでしまうと、
+見た目が同じでも処理ごとに別のボタンを作らなくてはなりません。
+これは大変効率が悪いです。
+
+そのため、ボタンを設置するときに処理の内容を自由に設定できるようにしたいです。
+それを実現するのが、Reactコンポーネントのpropsです。
+
+propsは、Reactコンポーネントを呼び出すときの引数です。
+普通のHTML要素でも、例えばaタグだったらリンク先を表すhref属性や、inputタグだったら入力形式を指定するtype属性のように、
+使用するときにいろいろ指定できるものがあるのと同じです。
+
+Reactコンポーネントにpropsを追加するのは簡単です。ここでは、中身がbutton要素だけのコンポーネントに、
+ボダンがクリックされたときの処理を指定するpropsであるonClickを追加します。
+
+```
+import React from "react";
+
+const SampleButton = ({onClick}) => {
+  return <button onClick={onClick}>ボタン</button>;
+}
+export default SampleButton;
+```
+
+3行目のアロー関数の引数を見てください。これは第一引数の中身を分割代入によってonClickというキーの値だけ取り出しています。
+これによって、例えば`<SampleButton onClick={() => console.log("click")}/>`というようにこのコンポーネントを呼び出すと、
+引数から得られたonClickの中身は"click"をログに出力する関数となります。
+すなわち、ボタンを設置した場所で何の処理を実行させるか決めることができるということです。
+
+そして、そのonClickをbutton要素のonClickというpropsにたらい回しにしています。
+Reactコンポーネントのreturnで使える要素には、大体全部にonClickというpropsが用意されていて、
+これによってその要素がクリックされたときの処理を記述することができます。
+したがって、クリックされたときにonClickの処理を実行するボタンを作ることができました。
+
+これと同様に、今回作成しているAtoms/EditButtonにもonClickを追加してみましょう。
+
+propsについてもう少し掘り下げておきましょう。
+先ほど、onClickはコンポーネントの第一引数の中身を分割代入したものだと説明しました。
+第一引数はコンポーネントに指定されたpropsを全て格納するオブジェクトとなります。
+そのため、以下のような書き方でもonClickを取り出すことが可能です。
+```
+const SampleButton = (props) => {
+  return <button onClick={props.onClick}>ボタン</button>;
+}
+```
+ここで、propsの中身を増やしてみましょう。
+今回はボタンにlabelという、ボタン上に表示されるテキストを変更するpropsを追加します。
+第一引数は全てのpropsを格納するので、labelもその中に含まれることになります。
+```
+const SampleButton = (props) => {
+  return <button onClick={props.onClick}>{props.label}</button>;
+}
+```
+そして、呼び出しの際には`<SampleButton onClick={() => console.log("click")} label="ラベル"/>`というように、
+labelの指定を追加すれば、"ラベル"と表示されたボタンを作ることができます。
+このように、propsの数と名前は自由に決めることができるので、必要に応じて設定しましょう。
+
+話を戻します。次に、props付きのAtoms/EditButtonをstorybook上で確認する方法を解説します。
+story.jsxの`export Default = ~`と書いてある部分を、次のように変更しましょう。
+```
+export const Default = Template.bind({});
+Default.args = {
+  onClick: () => console.log("clicked"),
+};
+```
+これをstorybook上で確認してみましょう。
+ブラウザの検証ツール内のConsoleを開いた状態でボタンを押してみてください。
+すると、上手くいっていれば"clicked"という文字列が押す度にConsole上に追加されていくと思います。
+（表示されなかったら今までの手順を振り返って原因を探ってみましょう。）
+
+先ほどstory.jsxに追加した`Default.args`というプロパティで、Default要素に与えるpropsを指定できます。

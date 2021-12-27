@@ -1,0 +1,41 @@
+---
+title: "ひとまず完成"
+date: "2021-12-26"
+index: 120
+---
+
+ページの見た目と大体の機能が完成したので、Storybook上ではなく実際のページとして表示してみましょう。
+次のファイルを作成します。
+
+## ディレクトリ構造
+
+```
+src
+  └ index.jsx
+```
+
+内容は次のようになります。
+```
+import React from "react";
+import ReactDOM from "react-dom";
+import MainPage from "./components/Pages/MainPage";
+import "./style.css";
+
+ReactDOM.render(
+  <MainPage />,
+  document.getElementById("app")
+);
+```
+
+これはhtmlファイル内のid="app"の要素の中にPages/MainPageを配置します。
+index.htmlはpublicディレクトリの中に、読み込んでいるstyle.cssはsrcディレクトリの中にそれぞれ用意してあります。
+
+ファイルの作成が出来たら、appディレクトリ下コマンド`yarn dev`を実行しましょう。
+すると、http://localhost:8080 でアプリケーションが動いている様子が確認できると思います。
+
+エラー処理とデータの保存を除いておよそお手本通りであったら、Github Pagesの設定を行ってから、
+プルリクエストを出し、レビュー依頼をしてください。
+
+## Github Pagesの設定
+
+編集中
