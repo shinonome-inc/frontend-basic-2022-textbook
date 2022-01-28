@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkfrontend_basic_2022_textbook=self.webpackChunkfrontend_basic_2022_textbook||[]).push([[691],{6738:function(e,t,n){n.r(t);var o=n(7294),a=n(8172),c=n(6541);t.default=function(e){e.data,e.location;return o.createElement(a.Z,null,o.createElement(c.xv,{fontSize:"xl"},"最終課題では簡易的なTodoアプリの作成を通して、Reactの使い方を学んでいきます。"),o.createElement(c.xv,{fontSize:"xl"},"画面左上のボタンからメニューを開いて、順に教材を見ていきましょう。"))}}}]);
+//# sourceMappingURL=component---src-pages-index-tsx-a499d4b8a78652b59872.js.map
