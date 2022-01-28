@@ -12,6 +12,7 @@ module.exports = {
     "gatsby-plugin-styled-components",
     "gatsby-plugin-sharp",
     "gatsby-remark-images",
+    "gatsby-transformer-remark",
     {
       resolve: "gatsby-plugin-mdx",
       options: {
@@ -33,5 +34,6 @@ module.exports = {
       },
     },
     "gatsby-plugin-typegen",
+    "gatsby-plugin-react-helmet",
   ],
 };

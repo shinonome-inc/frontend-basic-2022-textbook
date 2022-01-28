@@ -53,7 +53,7 @@ Atoms/Alertは後述するOrganisms/AlertManagerの中に配置し、それはOr
 果たしてコンポーネントの階層の深くで発生したエラーを伝えるために、通り道となる全てのコンポーネントのpropsに専用の関数を
 付けるのは可能でしょうか。少なくともコードが汚く読みづらいものになるでしょう。
 
-これを解決する、コンポーネントの階層をまたいデータの伝達を実現するものが、
+これを解決する、コンポーネントの階層をまたいだデータの伝達を実現するものが、
 ReactのContextです。
 
 Contextの中身はざっくり言うと値とProviderに分かれています。
@@ -61,4 +61,70 @@ Contextの中身はざっくり言うと値とProviderに分かれています�
 一方でProviderというのはその値を仲介するためのReactコンポーネントで、
 Contextとともに自動で生成されます。
 
-実際に作って行きましょう。Contextを定義するファイルの書き方は
+実際に作って行きましょう。まず、Contextに入れる値を何にするか決めます。
+
+このContextを通して行いたいことはAlertの操作ですので、
+- Alertに表示する内容を指定し、Alertを開く関数
+
+が必要になります。逆に、Alertの側からすると、
+- 今表示中かどうか
+- 表示する内容
+
+の情報が必要です。また、Alertは時間が経ったら勝手に消えるので、
+- Alertを閉じる関数
+
+も必要ですね。含めるべき値はこれくらいとなります。
+
+次に、Contextを実装していきます。名前はAlertHandlerContextとします。
+
+Contextを定義するファイルの書き方はいろいろ考えられますが、
+ここでは次のように書いていきます。
+
+```
+import React, { createContext, useContext, useState } from "react";
+
+const AlertHandlerContext = createContext();
+
+export const AlertHandlerProvider = ({ children }) => {
+  const [alertState, setAlertState] = useState({
+    visible: false,
+    errorText: "",
+  });
+
+  const setAlert = (errorText) => {
+    // TODO: ここを埋める
+  };
+
+  const closeAlert = () => {
+    // TODO: ここを埋める
+  };
+
+  const contextValue = {
+    ...alertState,
+    setAlert: setAlert,
+    closeAlert: closeAlert,
+  };
+
+  return (
+    <AlertHandlerContext.Provider value={contextValue}>
+      {children}
+    </AlertHandlerContext.Provider>
+  );
+};
+
+export const useAlertHandlerContext = () => useContext(AlertHandlerContext);
+
+```
+
+少し癖のある書き方なので穴埋め式としました。
+
+AlertHandlerContextを作成し、そのProviderをラップするReactコンポーネントであるAlertHandlerProviderを
+作成しています。
+
+AlertHandlerProviderの中で先ほど考えたContextの値を作成しています。
+Alertの開閉の関数の中身はstateの操作を行います。考えて書いてみましょう。
+
+そして、useContextを呼び出すuseAlertHandlerContextも定義しています。
+これによって、AlertHandlerContextそのものはexportせずに、必要な機能にのみ外部からアクセスできるようになっています。
+
+## 
