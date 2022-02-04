@@ -17,18 +17,11 @@ export const query = graphql`
   }
 `;
 
-type TTableOfContentsContext = Array<{
-  id: string;
-  title: string;
-  date: Date | null;
-  link: string;
-}>;
+const TableOfContentsContext = createContext([]);
 
-const TableOfContentsContext = createContext<TTableOfContentsContext>([]);
-
-const TableOfContentsProvider: React.FC = ({ children }) => {
-  const data = useStaticQuery<GatsbyTypes.TableOfContentsQuery>(query);
-  const contextValue: TTableOfContentsContext = [...data.allMdx.nodes]
+const TableOfContentsProvider = ({ children }) => {
+  const data = useStaticQuery(query);
+  const contextValue = [...data.allMdx.nodes]
     .sort((a, b) =>
       a.frontmatter &&
       a.frontmatter.index &&
@@ -40,7 +33,7 @@ const TableOfContentsProvider: React.FC = ({ children }) => {
     .map((node) => ({
       id: node.id,
       title: node.frontmatter?.title || "",
-      date: node.frontmatter ? new Date(node.frontmatter.date as string) : null,
+      date: node.frontmatter ? new Date(node.frontmatter.date) : null,
       link: `/${node.slug}`,
     }));
 

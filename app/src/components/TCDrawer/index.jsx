@@ -13,11 +13,7 @@ import { Link } from "gatsby";
 import React from "react";
 import tableOfContents from "../../contexts/table-of-contents";
 
-export type TTCDrawerProps = {
-  isOpen: boolean;
-  onClose: () => void;
-};
-const TCDrawer: React.FC<TTCDrawerProps> = ({ isOpen, onClose }) => {
+const TCDrawer = ({ isOpen, onClose }) => {
   const TableOfContentsContext = tableOfContents.useTableOfContentsContext();
   return (
     <Drawer isOpen={isOpen} placement="left" onClose={onClose}>

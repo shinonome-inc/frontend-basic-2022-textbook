@@ -8,11 +8,8 @@ module.exports = {
     figmaIdAndFilename: "UXNBffUMdW2mO8wLctV3mJ/frontend_basic_2022_todo",
   },
   plugins: [
-    "gatsby-plugin-typescript",
-    "gatsby-plugin-styled-components",
     "gatsby-plugin-sharp",
     "gatsby-remark-images",
-    "gatsby-transformer-remark",
     {
       resolve: "gatsby-plugin-mdx",
       options: {
@@ -27,13 +24,14 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-transformer-remark`,
+    },
+    {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "textbook",
         path: `${__dirname}/textbook`,
       },
     },
-    "gatsby-plugin-typegen",
-    "gatsby-plugin-react-helmet",
   ],
 };

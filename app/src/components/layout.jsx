@@ -5,7 +5,7 @@ import Header from "./Header";
 import { ChakraProvider, Flex } from "@chakra-ui/react";
 import { Helmet } from "react-helmet";
 
-const Layout: React.FC = ({ children }) => {
+const Layout = ({ children }) => {
   return (
     <>
       <Helmet>

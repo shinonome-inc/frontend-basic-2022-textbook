@@ -3,8 +3,8 @@ import { Link } from "gatsby";
 import React, { useState } from "react";
 import TCDrawer from "../TCDrawer";
 
-const Header: React.FC = () => {
-  const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
+const Header = () => {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   return (
     <HStack
       spacing={6}
@@ -14,6 +14,7 @@ const Header: React.FC = () => {
       bg="white"
       borderBottom="1px"
       borderColor="gray.300"
+      zIndex={1}
     >
       <IconButton
         aria-label="Open drawer"
