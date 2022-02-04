@@ -184,10 +184,7 @@ src/index.jsxのReactDOM.renderの第一引数をAlertHandlerProviderで囲ん�
 
 先述したOrganisms/TodoCard内のタスク自動消去処理のところで、AlertHandlerContextのsetAlertを呼び出しましょう。
 
-<CheckList>
-
-**確認項目**
-- タスクの内容を空にすると、タスクが消えると同時にアラートが表示される。
-- アラートは表示されてから5秒後に勝手に消える。
-
-</CheckList>
+<CheckList content={[
+  "タスクの内容を空にすると、タスクが消えると同時にアラートが表示される。",
+  "アラートは表示されてから5秒後に勝手に消える。"
+]}/>

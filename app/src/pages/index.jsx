@@ -1,5 +1,4 @@
 import React from "react";
-import { PageProps } from "gatsby";
 import Layout from "../components/layout";
 import { Center, Flex, Text } from "@chakra-ui/react";
 

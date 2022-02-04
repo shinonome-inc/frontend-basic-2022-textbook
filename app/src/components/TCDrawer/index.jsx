@@ -20,7 +20,7 @@ const TCDrawer = ({ isOpen, onClose }) => {
       <DrawerOverlay />
       <DrawerContent>
         <DrawerCloseButton />
-        <DrawerHeader>ページ一覧</DrawerHeader>
+        <DrawerHeader color={"teal.800"}>ページ一覧</DrawerHeader>
         <DrawerBody>
           <VStack spacing={6}>
             {TableOfContentsContext.map((content) => (
@@ -32,7 +32,9 @@ const TCDrawer = ({ isOpen, onClose }) => {
                 textAlign="center"
               >
                 <Link to={content.link}>
-                  <Text fontSize="md">{content.title}</Text>
+                  <Text fontSize="md" color={"teal.900"}>
+                    {content.title}
+                  </Text>
                 </Link>
               </Box>
             ))}

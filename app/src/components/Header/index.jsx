@@ -18,10 +18,14 @@ const Header = () => {
     >
       <IconButton
         aria-label="Open drawer"
-        icon={<span className="material-icons">menu</span>}
+        icon={
+          <span className="material-icons" color={"teal.800"}>
+            menu
+          </span>
+        }
         onClick={() => setIsDrawerOpen(true)}
       />
-      <Heading>
+      <Heading color={"teal.700"}>
         <Link to="/">Frontend Basic 最終課題</Link>
       </Heading>
       <TCDrawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} />

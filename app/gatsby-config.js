@@ -33,5 +33,6 @@ module.exports = {
         path: `${__dirname}/textbook`,
       },
     },
+    "gatsby-plugin-react-helmet",
   ],
 };
