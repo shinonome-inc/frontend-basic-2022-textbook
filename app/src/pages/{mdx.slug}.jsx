@@ -44,6 +44,11 @@ export const query = graphql`
 const TextbookPost = ({ data }) => {
   return (
     <Layout>
+      <Helmet>
+        <title>
+          {data.mdx?.frontmatter?.title} | PG frontend-basic React課題
+        </title>
+      </Helmet>
       <Center>
         <Flex
           flexDirection={"column"}
