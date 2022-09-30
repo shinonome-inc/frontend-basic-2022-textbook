@@ -52,16 +52,28 @@ src
 
 #### その他の関数(OtherFunc)
 
-- onEditComplete: タスク名の編集が完了したときに実行する。Atoms/Input コンポーネントの Props の onEditComplete に渡す。
-  - 引数: 1 つ
-    - value: 編集後のタスク名
-  - 処理
-    1. \[State\]isEditing を false に設定
-    2. \[Props\]onTaskChange を呼び出す。引数に value を渡す。
-- onEditButtonClick: タスク名編集ボタンを押したときに実行する。Atoms/EditButton コンポーネントの Props の onClick に渡す。
-  - 引数: なし
-  - 処理
-    1. \[State\]isEditing を true に設定
+##### onEditComplete
+
+タスク名の編集が完了したときに実行する。Atoms/Input コンポーネントの Props の onEditComplete に渡す。
+
+###### 引数: 1 つ
+
+- value: 編集後のタスク名
+
+###### 処理
+
+1. \[State\]isEditing を false に設定
+2. \[Props\]onTaskChange を呼び出す。引数に value を渡す。
+
+##### onEditButtonClick
+
+タスク名編集ボタンを押したときに実行する。Atoms/EditButton コンポーネントの Props の onClick に渡す。
+
+###### 引数: なし
+
+###### 処理
+
+1. \[State\]isEditing を true に設定
 
 #### レンダリング時の処理
 
