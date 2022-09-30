@@ -154,16 +154,41 @@ const PageLink = ({ id }) => {
 const components = {
   h1: (props) => <Heading marginBottom={4} color={"teal.700"} {...props} />,
   h2: (props) => (
-    <Text fontSize="3xl" marginY={4} color={"teal.800"} {...props} />
+    <Heading fontSize="3xl" marginY={4} color={"teal.800"} {...props} />
   ),
   h3: (props) => (
-    <Text fontSize="2xl" marginY={4} color={"teal.800"} {...props} />
+    <Heading
+      fontSize="2xl"
+      marginY={4}
+      color={"white"}
+      backgroundColor={"teal.300"}
+      borderColor={"teal.800"}
+      borderLeftWidth={8}
+      padding={2}
+      {...props}
+    />
   ),
   h4: (props) => (
-    <Text fontSize="xl" marginBottom={4} color={"teal.800"} {...props} />
+    <Heading
+      fontSize="xl"
+      marginBottom={4}
+      color={"teal.800"}
+      borderColor={"teal.400"}
+      borderLeftWidth={4}
+      padding={2}
+      {...props}
+    />
   ),
   h5: (props) => (
-    <Text fontSize="lg" marginBottom={4} color={"teal.800"} {...props} />
+    <Heading
+      fontSize="lg"
+      marginBottom={4}
+      color={"teal.800"}
+      borderColor={"teal.400"}
+      borderBottomWidth={2}
+      padding={1}
+      {...props}
+    />
   ),
   h6: (props) => (
     <Text fontSize="lg" marginBottom={4} color={"teal.800"} {...props} />
