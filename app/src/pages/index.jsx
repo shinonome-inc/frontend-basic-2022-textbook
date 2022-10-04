@@ -1,10 +1,14 @@
 import React from "react";
 import Layout from "../components/layout";
 import { Center, Flex, Text } from "@chakra-ui/react";
+import { Helmet } from "react-helmet";
 
 const Index = ({ data, location }) => {
   return (
     <Layout>
+      <Helmet>
+        <title>トップページ | PG frontend-basic React課題</title>
+      </Helmet>
       <Center>
         <Flex
           flexDirection={"column"}

@@ -15,6 +15,7 @@ import { graphql, Link as GatsbyLink } from "gatsby";
 import { MDXProvider } from "@mdx-js/react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import React from "react";
+import { Helmet } from "react-helmet";
 import Layout from "../components/layout";
 import CheckList from "../components/CheckList";
 import tableOfContents from "../contexts/table-of-contents";
@@ -44,6 +45,11 @@ export const query = graphql`
 const TextbookPost = ({ data }) => {
   return (
     <Layout>
+      <Helmet>
+        <title>
+          {data.mdx?.frontmatter?.title} | PG frontend-basic React課題
+        </title>
+      </Helmet>
       <Center>
         <Flex
           flexDirection={"column"}
