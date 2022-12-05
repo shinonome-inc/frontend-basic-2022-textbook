@@ -6,11 +6,11 @@ pathToStory: /story/molecules-task--default
 figmaNodeId: 3%3A969
 ---
 
-Moleculesに入りましたね。
-ここからは今までAtoms等下の階層で作った小さなパーツを組み上げながら、その具体的な機能を与えて、
+Molecules に入りましたね。
+ここからは今まで Atoms 等下の階層で作った小さなパーツを組み上げながら、その具体的な機能を与えて、
 大きなパーツを作っていく工程になります。
 
-Atoms/Checkbox、Atoms/EditButton、Atoms/Inputを組み合わせて、まずは見た目を作りましょう。
+Atoms/Checkbox、Atoms/EditButton、Atoms/Input を組み合わせて、まずは見た目を作りましょう。
 もちろん、配置の調整や非編集時にタスク名を表示する部分は新たにスタイルを書く必要があります。
 
 ## ディレクトリ構造
@@ -24,24 +24,101 @@ src
         └ story.jsx
 ```
 
+## 設計（参考）
+
+### Task コンポーネント
+
+#### Props
+
+- onTaskChange: タスク名の変更が完了したときに実行するコールバック関数。
+  引数 1 つ
+  - 1: 変更後のタスク名
+- onTaskComplete: タスクのチェックボックスが押下されたときに実行するコールバック関数。
+  引数なし
+- taskName: 表示するタスク名（デフォルトの値 ""）
+- defaultIsEditing: コンポーネントが生成されたときの\[State\]isEditing の値（デフォルトの値 false）
+
+#### State
+
+- isEditing: タスク名が編集中であるかどうか。型=bool、デフォルトの値=\[Props\]defaultIsEditing
+
+#### Ref
+
+なし
+
+#### Effect
+
+なし
+
+#### その他の関数(OtherFunc)
+
+##### onEditComplete
+
+タスク名の編集が完了したときに実行する。Atoms/Input コンポーネントの Props の onEditComplete に渡す。
+
+###### 引数: 1 つ
+
+- value: 編集後のタスク名
+
+###### 処理
+
+1. \[State\]isEditing を false に設定
+2. \[Props\]onTaskChange を呼び出す。引数に value を渡す。
+
+##### onEditButtonClick
+
+タスク名編集ボタンを押したときに実行する。Atoms/EditButton コンポーネントの Props の onClick に渡す。
+
+###### 引数: なし
+
+###### 処理
+
+1. \[State\]isEditing を true に設定
+
+#### レンダリング
+
+- StyledWrapper
+  - StyledCheckboxWrapper
+    - Atoms/Checkbox: onClick=\[Props\]onTaskComplete
+  - IF \[State\]isEditing が true ならば
+    - Atoms/Input: onEditComplete=\[OtherFunc\]onEditComplete defaultValue=\[Props\]taskName
+  - ELSE
+    - StyledNameAndButtonWrapper
+      - StyledTaskName
+        - \[Props\]taskName を表示
+      - StyledEditButtonWrapper
+        - EditButton: onClick=\[OtherFunc\]onEditButtonClick
+
+### その他、styled-compoents
+
+- StyledWrapper: styled.div
+- StyledCheckboxWrapper: styled.div
+- StyledNameAndButtonWrapper: styled.div
+- StyledTaskName: styled.div
+- StyledEditButtonWrapper: styled.div
+
+---
+
 ## 状態の管理
 
 このパーツには、編集中とそうでない時の二つの状態があります。
 
 そのため、編集中かどうかを表す変数を作り、
-- 変数の値がtrueならばAtoms/Inputを表示し、falseならばただの文字列としてタスク名を表示する。
-- Atoms/EditButtonが押されたら変数にtrueを代入する。
-- Atoms/InputのonEditCompleteが呼ばれたら変数にfalseを代入する。
-というアルゴリズムで状態の切り替えを実現することを考えます。
+
+- 変数の値が true ならば Atoms/Input を表示し、false ならばただの文字列としてタスク名を表示する。
+- Atoms/EditButton が押されたら変数に true を代入する。
+- Atoms/Input の onEditComplete が呼ばれたら変数に false を代入する。
+  というアルゴリズムで状態の切り替えを実現することを考えます。
 
 しかし、これはそのままでは不可能です。
 なぜなら、コンポーネントは再描画される度に処理が最初から実行され、前回定義した変数の値を記録できないからです。
 加えて、そもそもその場で定義した変数の値を変更しても、再描画は実行されません。
 
 そのため、変更されたら再描画が実行され、かつ再描画前の情報を保持するものが必要となります。
-それがReactのStateになります。
+それが React の State になります。
 
 使い方を見てみましょう。以下は一秒ごとにカウントアップしていく表示を作る例です。
+
 ```
 import React, {useState, useEffect} from "react";
 
@@ -56,41 +133,43 @@ const Sample = () => {
 }
 export default Sample;
 ```
-4行目でuseState関数を呼び出すことでStateの定義を行っています。
-useStateの引数はStateの初期値です。
-useStateの返り値は、現在のStateの値、Stateを更新するための関数が入った配列の形で返されるので、
-それぞれcount、setCountに分割代入しています。
 
-useEffectで第二引数にcountを指定することで、countの値が更新される度に処理を実行しています。
-処理の中身は一秒後にsetCountを呼び出して、countの値を1増やすものです。
+4 行目で useState 関数を呼び出すことで State の定義を行っています。
+useState の引数は State の初期値です。
+useState の返り値は、現在の State の値、State を更新するための関数が入った配列の形で返されるので、
+それぞれ count、setCount に分割代入しています。
+
+useEffect で第二引数に count を指定することで、count の値が更新される度に処理を実行しています。
+処理の中身は一秒後に setCount を呼び出して、count の値を 1 増やすものです。
 これによって一秒ごとに再描画 -> カウントアップが行われることとなります。
 
-注意するべきは、countに直接値を代入しても何も起こらないということです。
-Stateの値を更新する際はかならずuseStateの返り値で貰える更新用の関数、今回でいうsetCountを介して行いましょう。
+注意するべきは、count に直接値を代入しても何も起こらないということです。
+State の値を更新する際はかならず useState の返り値で貰える更新用の関数、今回でいう setCount を介して行いましょう。
 すると再描画が行われます。
 
-これを利用して、編集中かどうかを表すStateを定義し、先ほどのアルゴリズムを実装してみましょう。
+これを利用して、編集中かどうかを表す State を定義し、先ほどのアルゴリズムを実装してみましょう。
 
 ## 親要素との関係
 
 このコンポーネントはタスク名を表示しますが、タスクは複数あるため、その状態の管理はこの大本で一括して行った方がいいでしょう。
-そのため、タスク名はpropsで指定できるようにします。
+そのため、タスク名は props で指定できるようにします。
 
 また、タスク名が編集されたとき、タスクが完了したとき（チェックボックスが押されたとき）は、
 親要素で管理しているタスク情報を変更しなければならないため、
-その処理もそれぞれpropsで指定できるようにしましょう。
+その処理もそれぞれ props で指定できるようにしましょう。
 特に、タスク名が編集されたときの関数は、その引数として変更後のタスク名をとることで情報の受け渡しが可能になります。
 
 加えて、タスク追加ボタンを押されたとき、タスクは編集中の状態で追加されます。
 しかし、画面をリロードしたときはタスクは編集中ではありません。
-どちらもMolecules/Taskを生成しているので、この違いはpropsを介して指定できるようにしなくてはなりません。
-すなわち、生成されたときに編集中か否かを表すpropsを追加する必要があります。
+どちらも Molecules/Task を生成しているので、この違いは props を介して指定できるようにしなくてはなりません。
+すなわち、生成されたときに編集中か否かを表す props を追加する必要があります。
 
-propsの定義とその組み込みができたら、その機能が上手く動いているか（特に関数がちゃんと呼び出されているか）、
-story.jsxでpropsの値をいじって確認しましょう。
+props の定義とその組み込みができたら、その機能が上手く動いているか（特に関数がちゃんと呼び出されているか）、
+story.jsx で props の値をいじって確認しましょう。
 
-レビューの際は、storybook上で次を満たす状態で提出してください。
-- タスク名にstory.jsx上で指定した値が入っている。
-- チェックボックスをクリックすると、Consoleに"task completed"と表示される。
-- タスク名の編集が完了すると、Consoleに"taskname changed: <変更後のタスク名>"と表示される。
+レビューの際は、storybook 上で次を満たす状態で提出してください。
+
+- タスク名に story.jsx 上で指定した値が入っている。
+- チェックボックスをクリックすると、Console に"task completed"と表示される。
+- タスク名の編集が完了すると、Console に"taskname changed: <変更後のタスク名>"と表示される。
 - (タスク名を編集してもタスク名が変更されないのは問題ない。)

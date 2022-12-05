@@ -21,27 +21,113 @@ src
         └ story.jsx
 ```
 
+## 設計（参考）
+
+### TodoCard コンポーネント
+
+#### Props
+
+なし
+
+#### State
+
+- taskList: タスクの情報を保持する配列。配列の要素はそれぞれ「タスク名」「初期化中かどうか」の情報をもつ。ここでは仮にそれぞれ name,initializing とする。
+
+#### Ref
+
+なし
+
+#### Effect
+
+なし（後の課題で追加）
+
+#### その他の関数(OtherFunc)
+
+##### onAddTaskButtonClick
+
+「タスクを追加」ボタンを押した際の処理
+
+###### 引数: なし
+
+###### 処理
+
+1. \[State\]taskList の末尾に新しいタスク情報を追加。内容は以下
+
+- name: ""
+- initializing: true
+
+##### onTaskComplete
+
+タスクのチェックボックスを押した際の処理
+
+###### 引数: 1 つ
+
+- index: チェックボックスが押されたタスク情報の、\[State\]taskList における番号
+
+###### 処理
+
+1. \[State\]taskList の、 index 番目の要素を除外する。
+
+##### onTaskNameChange
+
+タスク名の編集が完了した際の処理
+
+###### 引数: 2 つ
+
+- value: 変更後のタスク名
+- index: 変更対象のタスク情報の、\[State\]taskList における番号
+
+###### 処理
+
+1. value が空文字列であれば、\[State\]taskList の index 番目の要素を除外する。
+2. value が空文字列で無ければ、\[State\]taskList の index 番目の要素の name を value とする。
+3. \[State\]taskList を更新する。
+
+#### レンダリング
+
+- StyledWrapper
+  - AddTaskButton onClick=\[OtherFunc\]onAddTaskButtonClick
+    - StyledTaskList
+      - \[State\]taskList を、map 関数で次の Task コンポーネントの配列に変換。
+        このとき、map 関数のコールバック関数の第一引数は処理対象のタスク情報、第二引数は処理対象が何番目かを表す。それぞれ、task、index とおく。
+        - Task props は以下
+          - key=index
+          - onTaskComplete=\[OtherFunc\]onTaskComplete を、引数に index を与えて呼び出す関数。
+          - onTaskNameChange=引数に変更後のタスク名 value を受け取る関数。\[OtherFunc\]onTaskNameChange を、引数に value、index を与えて実行する。
+          - taskName=task.name
+          - defaultIsEditing=task.initializing
+
+### その他、styled-components
+
+- StyledWrapper: styled.div
+- StyledTaskList: styled.div
+
+---
+
 ## タスクリストの管理
 
-タスクの情報を格納する配列のStateを作成しましょう。
+タスクの情報を格納する配列の State を作成しましょう。
 
-タスクの情報と一口に言いましたが、必要な情報は
-- タスク名
-- タスクの状態を表す文字列("TODO"と"DONE")
-の二つでしょう。これを一つのオブジェクトとして配列に格納していくとよいです。
-タスクの状態は2種類だけなのでtrueとfalseでいいのではないかと思うかもしれませんが、
-こういった状態を表す変数は後から値の種類が増える場合がよくあるので、
-拡張しやすいように最初から文字列にしておくことがおすすめです。
+タスクの情報として最初に重いつくのは、タスクの名前でしょう。
+今回はシンプルなアプリケーションになるので、一旦はタスクの名前だけを管理すればいいです。
+ただし、後でもう一つ値を追加することになるでしょうから、今回は
 
-そして、このタスク情報のうち、状態が"TODO"のものをもとにMolecules/Taskの配列を生成し、return内に配置しましょう。
-returnの中でコンポーネントの配列を配置すると勝手に展開してくれます。
+```
+{
+  name: "タスク名"
+}
+```
 
-配列から配列を作成する際にはmap関数が使えますね。
-また、表示するべきタスクは未完了のものだけなので、filter関数で絞り込むことも有効です。
+のようにオブジェクトとして管理しておきます。
+
+そして、このタスク情報の配列から Molecules/Task の配列を生成し、return 内に配置しましょう。
+return の中でコンポーネントの配列を配置すると勝手に展開してくれます。
+配列から配列を作成する際には map 関数が使えますね。
 
 表示ができたら、タスク追加ボタンでタスクを追加するようにしましょう。
-ここで、タスクを追加した際にタスクを編集中にする(デフォルト編集中を表すpropsにtrueを渡す)
+ここで、タスクを追加した際にタスクを編集中にする(デフォルト編集中を表す props に true を渡す)
 ためにはどうしたらよいでしょうか。
+ヒントは、先ほどのタスクの情報に何を含めるか、です。
 
 そして、タスク名変更、タスク完了時の処理も定義しましょう。
 タスクの情報を変更するために、リスト何番目のタスクに対して操作する必要があるのかに注意しましょう。
