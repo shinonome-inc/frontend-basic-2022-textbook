@@ -16,7 +16,42 @@ OwnerをあなたのGitHubアカウントにし、Repository nameを`<slack名>-
 ![1](./images/environment-1.png)
 
 これで、あなたがこの課題を進めていくリポジトリができました。
-HTML/CSS課題と同様に、これをローカルにクローンしましょう。
+
+次に、Chromaticの設定をしましょう。
+[chromatic.com](https://www.chromatic.com/)にアクセスし、sign upを行います。これまで利用したことがある方は sign in を選択してください。
+![chromatic](./images/environment-9.png)
+
+Connect with GitHub を選択し、githubアカウントとの連携を行います。
+![sign up](./images/environment-10.png)
+
+sing in/sign upが完了すると、以下のような画面になります。
+左上が自分のアカウントになっていることを確認した上で、右上の **Add project** をクリックします。
+![projects](./images/environment-3.png)
+
+Add Projectの画面が開いたら、Choose from Github を選択します。
+![add projects](./images/environment-4.png)
+
+自分のリポジトリ一覧が表示されるので、先ほど作成したリポジトリを選択しましょう。
+![choose your projects](./images/environment-5.png)
+
+リポジトリを選択すると、以下のような画面になるので、 `project-token=`の先の部分(塗りつぶされている箇所)をコピーします。
+![project-token](./images/environment-6.png)
+
+次に、先ほど作成したリポジトリの Settings タブの中、Security > Secrets > Actions を開きます。  
+開けたら、右上の `New Repository Secrets` ボタンをクリックしてください。
+Repository Secretsは、外部サービスとの連携のためのトークンなど機密情報を管理するための機能です。
+![settings](./images/environment-7.png)
+
+このリポジトリでは、pushするたびに`CHROMATIC_PROJECT_TOKEN`の値を読み取ってChromaticを動かす設定になっています。
+先ほどコピーしたchromaticの`project-token`を`CHROMATIC_PROJECT_TOKEN`という名前で保存しましょう。
+![secrets](./images/environment-8.png)
+
+
+`Repository secrets`の欄に、`CHROMATIC_PROJECT_TOKEN`が追加されているのが確認できたら成功です。  
+Chromaticの設定は以上になります。
+![complete](./images/environment-11.png)
+
+次に、リポジトリをローカルにクローンしましょう。
 
 ここからは、HTML/CSS課題でNode.js等のインストールが済んでいる前提で進んでいきます。
 まだの方や、この課題までの間にPCを変えた方はそちらをご確認ください。
@@ -26,7 +61,3 @@ HTML/CSS課題と同様に、これをローカルにクローンしましょう
 実行が完了したら続けて`yarn sb`を実行しましょう。これでStoryBookが表示され、
 "This is example."を表示するコンポーネントを確認できたら、ひとまずローカルの環境の準備は完了です。
 ![2](./images/environment-2.png)
-
-次に、Chromaticの設定をしましょう。これもHTML/CSS課題と同様に進めてください。
-(ChromaticのキーはGithubのSettings > Secrets > Actions > New repository secretから"CHROMATIC_PROJECT_TOKEN"という名前で保存してください。)
-キーの登録までできたら、環境構築は完了です。
