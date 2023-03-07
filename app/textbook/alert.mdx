@@ -216,3 +216,32 @@ src/index.jsx の ReactDOM.render の第一引数を AlertHandlerProvider で囲
 Github PagesのURLをプルリクエストにコピペしてからレビューを依頼しましょう。
 
 ## 参考:StorybookにAlertを表示させる
+StorybookでAlertを表示させたい場合story.jsxにて先程、index.jsxで編集したようにAlertHandlerProviderを設置していきます。
+
+今回はMainPage/story.jsxを編集します。まず、AlertHandlerProvider,AlertManagerをimportします。その後、内容を次のようにします。
+
+
+```
+...
+
+import { AlertHandlerProvider } from "../../../contexts/alert_handler";
+import AlertManager from "../../Organisms/AlertManager";
+
+...
+
+export const Default = Template.bind({});
+Default.args = {};
+/*以下を追加*/
+Default.decorators = [
+  (Story) => (
+    <div>
+      <AlertHandlerProvider>
+        <AlertManager />
+        <Story />
+      </AlertHandlerProvider>
+    </div>
+  ),
+];
+
+```
+
