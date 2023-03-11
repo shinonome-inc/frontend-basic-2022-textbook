@@ -29,8 +29,9 @@ src
   |   | └ index.jsx
   |   └ TodoCard
   |     └ index.jsx
-  └ contexts
-    └ alert_handler.jsx
+  ├ contexts
+  | └ alert_handler.jsx
+  └ index.jsx
 ```
 
 ## アラート実装の流れ
@@ -181,7 +182,10 @@ AlertHandlerContext.setAlert("message"); //Alertの表示
 
 ## 作成したコンポーネントを設置する
 
-ここまででコンポーネントを作成しましたが、まだどこにも置いていないので表示されません。
+この課題ではGithub Pagesを使ってプルリクエストを提出してもらいます。
+
+ここまででコンポーネントを作成しましたが、まだどこにも置いていないのでGithub Pagesには表示されません。
+Alertを表示させるためsrc/index.jsxを編集していきます。
 
 まずは AlertHandlerContext を使うために、AlertHandlerProvider を設置しましょう。
 
@@ -207,3 +211,37 @@ src/index.jsx の ReactDOM.render の第一引数を AlertHandlerProvider で囲
     "アラートは表示されてから5秒後に勝手に消える。",
   ]}
 />
+
+## プルリクエスト提出
+Github PagesのURLをプルリクエストにコピペしてからレビューを依頼しましょう。
+
+## 参考:StorybookにAlertを表示させる
+StorybookでAlertを表示させたい場合story.jsxにて先程、index.jsxで編集したようにAlertHandlerProviderを設置していきます。
+
+今回はMainPage/story.jsxを編集します。内容を次のようにします。
+
+
+```
+...
+
+import { AlertHandlerProvider } from "../../../contexts/alert_handler";
+import AlertManager from "../../Organisms/AlertManager";
+
+...
+
+export const Default = Template.bind({});
+Default.args = {};
+/*以下を追加*/
+Default.decorators = [
+  (Story) => (
+    <div>
+      <AlertHandlerProvider>
+        <AlertManager />
+        <Story />
+      </AlertHandlerProvider>
+    </div>
+  ),
+];
+
+```
+
