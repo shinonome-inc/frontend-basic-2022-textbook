@@ -24,8 +24,6 @@ export const query = graphql`
   query TextbookPost($id: String) {
     site {
       siteMetadata {
-        exampleCommitHash
-        exampleChromaticAppId
         figmaIdAndFilename
       }
     }
@@ -92,7 +90,7 @@ const TextbookPost = ({ data }) => {
                 </Text>
                 <iframe
                   title="chromatic"
-                  src={`https://${data.site?.siteMetadata?.exampleCommitHash}--${data.site?.siteMetadata?.exampleChromaticAppId}.chromatic.com/iframe.html?path=${data.mdx?.frontmatter?.pathToStory}&viewMode=story&full=1&shortcuts=false&singleStory=true`}
+                  src={`http://shinonome.io/frontend-basic-todoapp-storybook/iframe.html?path=${data.mdx?.frontmatter?.pathToStory}&viewMode=story&full=1&shortcuts=false&singleStory=true`}
                   width="800"
                   height="400"
                 ></iframe>
