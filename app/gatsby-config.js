@@ -3,8 +3,6 @@ module.exports = {
   siteMetadata: {
     siteUrl: "http://shinonome.io/frontend-basic-2022-textbook/",
     title: "frontend-basic-2022-textbook",
-    exampleCommitHash: "e9de3cd",
-    exampleChromaticAppId: "611bf05d266fc6003c453c3a",
     figmaIdAndFilename: "UXNBffUMdW2mO8wLctV3mJ/frontend_basic_2022_todo",
   },
   plugins: [
