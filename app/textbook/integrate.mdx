@@ -4,7 +4,7 @@ date: "2021-12-26"
 index: 120
 ---
 
-ページの見た目と大体の機能が完成したので、Storybook上ではなく実際のページとして表示してみましょう。
+ページの見た目と大体の機能が完成したので、Storybook 上ではなく実際のページとして表示してみましょう。
 次のファイルを作成します。
 
 ## ディレクトリ構造
@@ -15,6 +15,7 @@ src
 ```
 
 内容は次のようになります。
+
 ```
 import React from "react";
 import ReactDOM from "react-dom";
@@ -27,26 +28,26 @@ ReactDOM.render(
 );
 ```
 
-これはhtmlファイル内のid="app"の要素の中にPages/MainPageを配置します。
-index.htmlはpublicディレクトリの中に、読み込んでいるstyle.cssはsrcディレクトリの中にそれぞれ用意してあります。
+これは html ファイル内の id="app"の要素の中に Pages/MainPage を配置します。
+index.html は public ディレクトリの中に、読み込んでいる style.css は src ディレクトリの中にそれぞれ用意してあります。
 
-ファイルの作成が出来たら、appディレクトリ下コマンド`yarn dev`を実行しましょう。
+ファイルの作成が出来たら、app ディレクトリ下コマンド`yarn dev`を実行しましょう。
 すると、http://localhost:8080 でアプリケーションが動いている様子が確認できると思います。
 
-エラー処理とデータの保存を除いておよそお手本通りであったら、Github Pagesの設定を行ってから、
+エラー処理とデータの保存を除いておよそお手本通りであったら、Github Pages の設定を行ってから、
 プルリクエストを出し、レビュー依頼をしてください。
 
-## Github Pagesの設定
+## Github Pages の設定
 
-Github上のこの課題用のリポジトリのページを開き、以下の手順で設定を行います。
+Github 上のこの課題用のリポジトリのページを開き、以下の手順で設定を行います。
 
 ![Github Pagesの設定 1](./images/githubpages-0.png)
 
-1. Settingsを開く
-2. Pagesを開く
-3. デプロイの対象となるブランチの指定をする。Branchのドロップダウンを開き、
-4. gh-pagesブランチを選択する。このブランチはGithub Actionsにより自動で作成・更新される。**この時点でgh-pagesがリストに無かったら想定外なので講師に連絡してください。**
-5. （新たに/root等が記載されたドロップダウンが出現するが無視して、）Saveボタンを押す
+1. Settings を開く
+2. Pages を開く
+3. デプロイの対象となるブランチの指定をする。Branch のドロップダウンを開き、
+4. gh-pages ブランチを選択する。このブランチは Github Actions により自動で作成・更新される。**この時点で gh-pages がリストに無かったら想定外なので講師に連絡してください。**
+5. （新たに/root 等が記載されたドロップダウンが出現するが無視して、）Save ボタンを押す
 
 ここまで行い、一分程度待ってからページを更新すると、デプロイされたページへのリンクが出現します。
 
@@ -54,3 +55,17 @@ Github上のこの課題用のリポジトリのページを開き、以下の�
 
 リンク先のページが、ローカルで`yarn dev`を実行した際のページと同じ挙動を示すことを確かめたら、このリンクを添付してプルリクエストを提出して下さい。
 
+## 修了者アンケート
+
+Pull Request がマージされたら解答し、次へ進んでください。
+
+<iframe
+  src="https://docs.google.com/forms/d/e/1FAIpQLSdu9Ywt8XmrNuDfe97B3TXhZnNwwCoHLDaUM5v5tvfLXGCUgQ/viewform?embedded=true"
+  width="100%"
+  height="800"
+  frameborder="0"
+  marginheight="0"
+  marginwidth="0"
+>
+  読み込んでいます…
+</iframe>
